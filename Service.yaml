@@ -1,0 +1,219 @@
+---
+swagger: '2.0'
+info:
+  description: 'OpenAPI specification for SiebelService - API : service/ProductFulfillmentService/Create'
+  version: '1.0'
+  title: SblSvProductFulfillmentServiceCreate
+  contact:
+    email: sample@sample.com
+schemes:
+- https
+- http
+securityDefinitions:
+  Basic Auth:
+    type: basic
+  OAuth 2.0:
+    type: oauth2
+    authorizationUrl: http://openAPI.io/
+    flow: implicit
+    scopes:
+      'write:': modify
+      'read:': read only
+externalDocs:
+  description: OpenAPI
+  url: https://openapis.org
+host: premiummdeve.aa.com:443
+basePath: "/siebel/v1.0"
+tags:
+- name: service/ProductFulfillmentService/Create/
+definitions:
+  service_ProductFulfillmentService_Create__in_args:
+    type: object
+    required:
+    - body
+    properties:
+      body:
+        type: object
+        required:
+        - source
+        - channel
+        - clientId
+        - transactionId
+        - customerInfo
+        - fulfillProducts
+        properties:
+          source:
+            type: string
+          clientId:
+            type: string
+          transactionId:
+            type: string
+          channel:
+            type: string
+          customerInfo:
+            type: object
+            properties:
+              aadv:
+                type: string
+              firstName:
+                type: string
+              lastName:
+                type: string
+              email:
+                type: string
+          paymentInfo:
+            type: object
+            properties:
+              paymentType:
+                type: string
+              costCenter:
+                type: string
+              tradingCompany:
+                type: string
+              accountNumber:
+                type: string
+          fulfillProducts:
+            type: array
+            items:
+            - type: object
+              properties:
+                productType:
+                  type: string
+                productName:
+                  type: string
+                validToDate:
+                  type: string
+                extRefNumber:
+                  type: string
+                quantity:
+                  type: integer
+              required:
+              - productType
+              - productName
+  service_ProductFulfillmentService_Create__out_args:
+    type: object
+    properties:
+      transactionId:
+        type: string
+      customerInfo:
+        type: object
+        properties:
+          aadv:
+            type: string
+          firstName:
+            type: string
+          lastName:
+            type: string
+          email:
+            type: string
+      productDetails:
+        type: array
+        items:
+        - type: object
+          properties:
+            validToDate:
+              type: string
+            productName:
+              type: string
+            quantity:
+              type: integer
+            productType:
+              type: string
+            extRefNumber:
+              type: string
+            fulfillStatus:
+              type: object
+              properties:
+                failureCode:
+                  type: string
+                status:
+                  type: string
+                failureMessage:
+                  type: string
+              required:
+              - status
+            voucherDetails:
+              type: array
+              items:
+              - type: object
+                properties:
+                  status:
+                    type: string
+                  voucherNumber:
+                    type: string
+                  expirationDate:
+                    type: string
+                  redeemedLocation:
+                    type: string
+                  redeemedDate:
+                    type: string
+                required:
+                - status
+                - voucherNumber
+                - expirationDate
+          required:
+          - productName
+          - productType
+      responseStatus:
+        type: object
+        properties:
+          Status:
+            type: string
+          FailureCode:
+            type: string
+          FailureMessage:
+            type: string
+        required:
+        - Status
+paths:
+  "/service/ProductFulfillmentService/Create/":
+    post:
+      tags:
+      - service/ProductFulfillmentService/Create/
+      summary: ''
+      description: ''
+      operationId: service_ProductFulfillmentService_Create__post
+      produces:
+      - application/json
+      - application/xml
+      consumes:
+      - application/json
+      - application/xml
+      responses:
+        '200':
+          description: Successful Operation
+          schema:
+            "$ref": "#/definitions/service_ProductFulfillmentService_Create__out_args"
+        '204':
+          description: No Resource Found
+        '304':
+          description: Not Modified
+        '401':
+          description: Unauthorized
+        '403':
+          description: Access Forbidden
+        '404':
+          description: Business service or method doesnt exist
+        '500':
+          description: Internal Server Error
+      security:
+      - Basic Auth: []
+        OAuth 2.0: []
+      parameters:
+      - in: query
+        name: uniformresponse
+        required: true
+        type: string
+        default: Y
+        enum:
+        - Y
+      - in: query
+        name: excludeEmptyFieldsInResponse
+        required: false
+        type: string
+        default: 'false'
+      - name: body
+        in: body
+        required: true
+        schema:
+          "$ref": "#/definitions/service_ProductFulfillmentService_Create__in_args"
