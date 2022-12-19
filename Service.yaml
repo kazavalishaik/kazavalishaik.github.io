@@ -1,4 +1,3 @@
----
 swagger: '2.0'
 info:
   description: 'OpenAPI specification for SiebelService - API : service/ProductFulfillmentService/Create'
@@ -7,8 +6,8 @@ info:
   contact:
     email: sample@sample.com
 schemes:
-- https
-- http
+  - https
+  - http
 securityDefinitions:
   Basic Auth:
     type: basic
@@ -23,24 +22,24 @@ externalDocs:
   description: OpenAPI
   url: https://openapis.org
 host: premiummdeve.aa.com:443
-basePath: "/siebel/v1.0"
+basePath: /siebel/v1.0
 tags:
-- name: service/ProductFulfillmentService/Create/
+  - name: service/ProductFulfillmentService/Create/
 definitions:
   service_ProductFulfillmentService_Create__in_args:
     type: object
     required:
-    - body
+      - body
     properties:
       body:
         type: object
         required:
-        - source
-        - channel
-        - clientId
-        - transactionId
-        - customerInfo
-        - fulfillProducts
+          - source
+          - channel
+          - clientId
+          - transactionId
+          - customerInfo
+          - fulfillProducts
         properties:
           source:
             type: string
@@ -75,21 +74,21 @@ definitions:
           fulfillProducts:
             type: array
             items:
-            - type: object
-              properties:
-                productType:
-                  type: string
-                productName:
-                  type: string
-                validToDate:
-                  type: string
-                extRefNumber:
-                  type: string
-                quantity:
-                  type: integer
-              required:
-              - productType
-              - productName
+                type: object
+                properties:
+                  productType:
+                    type: string
+                  productName:
+                    type: string
+                  validToDate:
+                    type: string
+                  extRefNumber:
+                    type: string
+                  quantity:
+                    type: integer
+                required:
+                  - productType
+                  - productName
   service_ProductFulfillmentService_Create__out_args:
     type: object
     properties:
@@ -109,51 +108,51 @@ definitions:
       productDetails:
         type: array
         items:
-        - type: object
-          properties:
-            validToDate:
-              type: string
-            productName:
-              type: string
-            quantity:
-              type: integer
-            productType:
-              type: string
-            extRefNumber:
-              type: string
-            fulfillStatus:
-              type: object
-              properties:
-                failureCode:
-                  type: string
-                status:
-                  type: string
-                failureMessage:
-                  type: string
-              required:
-              - status
-            voucherDetails:
-              type: array
-              items:
-              - type: object
+            type: object
+            properties:
+              validToDate:
+                type: string
+              productName:
+                type: string
+              quantity:
+                type: integer
+              productType:
+                type: string
+              extRefNumber:
+                type: string
+              fulfillStatus:
+                type: object
                 properties:
+                  failureCode:
+                    type: string
                   status:
                     type: string
-                  voucherNumber:
-                    type: string
-                  expirationDate:
-                    type: string
-                  redeemedLocation:
-                    type: string
-                  redeemedDate:
+                  failureMessage:
                     type: string
                 required:
-                - status
-                - voucherNumber
-                - expirationDate
-          required:
-          - productName
-          - productType
+                  - status
+              voucherDetails:
+                type: array
+                items:
+                    type: object
+                    properties:
+                      status:
+                        type: string
+                      voucherNumber:
+                        type: string
+                      expirationDate:
+                        type: string
+                      redeemedLocation:
+                        type: string
+                      redeemedDate:
+                        type: string
+                    required:
+                      - status
+                      - voucherNumber
+                      - expirationDate
+            required:
+              - productName
+              - productType
       responseStatus:
         type: object
         properties:
@@ -164,26 +163,26 @@ definitions:
           FailureMessage:
             type: string
         required:
-        - Status
+          - Status
 paths:
-  "/service/ProductFulfillmentService/Create/":
+  /service/ProductFulfillmentService/Create/:
     post:
       tags:
-      - service/ProductFulfillmentService/Create/
+        - service/ProductFulfillmentService/Create/
       summary: ''
       description: ''
       operationId: service_ProductFulfillmentService_Create__post
       produces:
-      - application/json
-      - application/xml
+        - application/json
+        - application/xml
       consumes:
-      - application/json
-      - application/xml
+        - application/json
+        - application/xml
       responses:
         '200':
           description: Successful Operation
           schema:
-            "$ref": "#/definitions/service_ProductFulfillmentService_Create__out_args"
+            $ref: '#/definitions/service_ProductFulfillmentService_Create__out_args'
         '204':
           description: No Resource Found
         '304':
@@ -197,23 +196,23 @@ paths:
         '500':
           description: Internal Server Error
       security:
-      - Basic Auth: []
-        OAuth 2.0: []
+        - Basic Auth: []
+          OAuth 2.0: []
       parameters:
-      - in: query
-        name: uniformresponse
-        required: true
-        type: string
-        default: Y
-        enum:
-        - Y
-      - in: query
-        name: excludeEmptyFieldsInResponse
-        required: false
-        type: string
-        default: 'false'
-      - name: body
-        in: body
-        required: true
-        schema:
-          "$ref": "#/definitions/service_ProductFulfillmentService_Create__in_args"
+        - in: query
+          name: uniformresponse
+          required: true
+          type: string
+          default: 'Y'
+          enum:
+            - 'Y'
+        - in: query
+          name: excludeEmptyFieldsInResponse
+          required: false
+          type: string
+          default: 'false'
+        - name: body
+          in: body
+          required: true
+          schema:
+            $ref: '#/definitions/service_ProductFulfillmentService_Create__in_args'
