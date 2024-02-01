@@ -1,6 +1,6 @@
 swagger: '2.0'
 info:
-  description: 'OpenAPI specification for SiebelService - API : service/ProductFulfillmentService/Create'
+  description: 'OpenAPI specification for SiebelService - API : service/ProductFulfillmentService/Create up'
   version: '1.0'
   title: SblSvProductFulfillmentServiceCreate
   contact:
